@@ -1,10 +1,36 @@
 <script setup>
-import {} from 'vue'
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      message: '用户名为必填',
+      trigger: 'blur'
+    }
+  ],
+  password: [
+    {
+      // required: true,
+      validator: validatePassword(),
+      trigger: 'blur'
+    }
+  ]
+})
 </script>
 
 <template>
   <div class="login-container">
-    <el-form ref="loginFormRef" class="login-form">
+    <el-form
+      ref="loginFormRef"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -12,14 +38,23 @@ import {} from 'vue'
         <span class="svg-container">
           <svg-icon icon="user"></svg-icon>
         </span>
-        <el-input placeholder="username" name="username" type="text">
+        <el-input
+          v-model="loginForm.username"
+          placeholder="username"
+          name="username"
+          type="text"
+        >
         </el-input>
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password"></svg-icon>
         </span>
-        <el-input placeholder="password" name="password"></el-input>
+        <el-input
+          v-model="loginForm.password"
+          placeholder="password"
+          name="password"
+        ></el-input>
         <span class="show-pwd">
           <el-icon>
             <svg-icon icon="eye"></svg-icon>
