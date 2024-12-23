@@ -21,6 +21,15 @@ const loginRules = ref({
     }
   ]
 })
+// 密码的显示和隐藏
+const passwordType = ref('password')
+const onChangePwdType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
 </script>
 
 <template>
@@ -54,11 +63,13 @@ const loginRules = ref({
           v-model="loginForm.password"
           placeholder="password"
           name="password"
+          :type="passwordType"
         ></el-input>
         <span class="show-pwd">
-          <el-icon>
-            <svg-icon icon="eye"></svg-icon>
-          </el-icon>
+          <svg-icon
+            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            v-on:click="onChangePwdType"
+          ></svg-icon>
         </span>
       </el-form-item>
       <el-button type="primary" style="width: 100%; margin-bottom: 30px"
@@ -106,6 +117,7 @@ $cursor: #fff;
       .el-input__wrapper {
         width: 100% !important;
         background: transparent !important;
+        padding: 0 !important;
       }
       input {
         height: 47px;
@@ -141,7 +153,6 @@ $cursor: #fff;
   .show-pwd {
     position: absolute;
     right: 10px;
-    top: 7px;
     font-size: 16px;
     color: $dark_gray;
     cursor: pointer;
