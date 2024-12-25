@@ -6,6 +6,7 @@
 
 <style lang="scss" scoped>
 .app-main {
+  // 浏览器可视区域的高度vh viewheight
   min-height: calc(100vh - 50px);
   width: 100%;
   position: relative;
