@@ -42,7 +42,10 @@ service.interceptors.response.use(
     }
   },
   error => {
-    // TODO: 将来处理token超时问题
+    // 处理token超时问题
+    if (error.response && error.response.data && error.response.data === 401) {
+      store.dispatch('user/logout')
+    }
     ElMessage.error(error.message) // 提示错误消息
     return Promise.reject(error)
   }
