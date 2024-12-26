@@ -1,8 +1,9 @@
 import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
-import { setItem, getItem } from '@/utils/storage'
+import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '@/router'
+import { setTimeStamp } from '@/utils/auth'
 
 export default {
   namespaced: true,
@@ -29,6 +30,8 @@ export default {
         }).then(data => {
           context.commit('setToken', data.token)
           router.push('/')
+          // 保存登录时间
+          setTimeStamp()
           resolve()
         }).catch(err => {
           reject(err)
@@ -37,6 +40,13 @@ export default {
     },
     async getUserInfo(context) {
       context.commit('setUserInfo', await getUserInfo())
+    },
+    logout(context) {
+      context.commit('setToken', '')
+      context.commit('setUserInfo', {})
+      removeAllItem()
+      // TODO 清理权限
+      router.push('/login')
     }
   }
 }
