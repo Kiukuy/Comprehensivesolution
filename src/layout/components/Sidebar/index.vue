@@ -1,7 +1,12 @@
-<script setup></script>
+<script setup>
+import SidebarMenu from './SidebarMenu.vue'
+</script>
 
 <template>
-  <div>侧边</div>
+  <div>
+    <h1>占位</h1>
+    <SidebarMenu></SidebarMenu>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

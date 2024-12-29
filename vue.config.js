@@ -33,5 +33,10 @@ module.exports = defineConfig({
         changeOrigin: true //是否跨域
       }
     }
+  },
+  configureWebpack: {
+    resolve: {
+      fallback: { 'path': require.resolve('path-browserify')}
+    }
   }
 })

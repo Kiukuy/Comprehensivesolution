@@ -1,7 +1,9 @@
 <script setup></script>
 
 <template>
-  <div class="app-main">主体</div>
+  <div class="app-main">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style lang="scss" scoped>
