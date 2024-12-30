@@ -1,9 +1,11 @@
 <script setup>
 import { Setting } from '@element-plus/icons'
+import Hamburger from '@/components/hamburger'
 </script>
 
 <template>
   <div class="navbar">
+    <hamburger class="hamburger-container"></hamburger>
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -55,6 +57,19 @@ import { Setting } from '@element-plus/icons'
           margin-right: 12px;
         }
       }
+    }
+  }
+
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    // hover动画
+    transition: background 0.5s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
     }
   }
 }
