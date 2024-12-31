@@ -33,14 +33,19 @@ const linkHoverColor = ref(store.getters.cssVar.menuBg)
 
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
-    <el-breadcrumb-item v-for="(item, index) in breadcrumData" :key="item.path">
-      <span v-if="index === breadcrumData.length - 1" class="no-redirect">{{
-        item.meta.title
-      }}</span>
-      <span v-else class="redirect" @click.prevent="onLinkClick(item)">{{
-        item.meta.title
-      }}</span>
-    </el-breadcrumb-item>
+    <transition-group name="breadcrumb">
+      <el-breadcrumb-item
+        v-for="(item, index) in breadcrumData"
+        :key="item.path"
+      >
+        <span v-if="index === breadcrumData.length - 1" class="no-redirect">{{
+          item.meta.title
+        }}</span>
+        <span v-else class="redirect" @click.prevent="onLinkClick(item)">{{
+          item.meta.title
+        }}</span>
+      </el-breadcrumb-item>
+    </transition-group>
   </el-breadcrumb>
 </template>
 
