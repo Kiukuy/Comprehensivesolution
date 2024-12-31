@@ -1,11 +1,13 @@
 <script setup>
 import { Setting } from '@element-plus/icons'
 import Hamburger from '@/components/hamburger'
+import breadcrumb from '@/components/Breadcrumb'
 </script>
 
 <template>
   <div class="navbar">
     <hamburger class="hamburger-container"></hamburger>
+    <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -71,6 +73,10 @@ import Hamburger from '@/components/hamburger'
     &:hover {
       background: rgba(0, 0, 0, 0.1);
     }
+  }
+
+  .breadcrumb-container {
+    float: left;
   }
 }
 </style>
