@@ -3,6 +3,7 @@ import { Setting } from '@element-plus/icons'
 import Hamburger from '@/components/hamburger'
 import breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
+import ThemePicker from '@/components/ThemeSelect'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import LangSelect from '@/components/LangSelect'
     <hamburger class="hamburger-container"></hamburger>
     <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
+      <ThemePicker class="right-menu-item hover-effect"></ThemePicker>
       <LangSelect class="right-menu-item hover-effect"></LangSelect>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">

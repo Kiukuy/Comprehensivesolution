@@ -18,7 +18,7 @@ $hideSideBarWidth: 54px;
 
 :export {
   menuText: $menuText;
-  subMenuActiveText: $subMenuActiveText;
+  menuActiveText: $menuActiveText;
   subMenuActiveText: $subMenuActiveText;
   menuBg: $menuBg;
   menuHover: $menuHover;
@@ -26,4 +26,5 @@ $hideSideBarWidth: 54px;
   subMenuHover: $subMenuHover;
   sideBarWidth: $sideBarWidth;
   sideBarDuration: $sideBarDuration;
+  hideSideBarWidth: $hideSideBarWidth;
 }
