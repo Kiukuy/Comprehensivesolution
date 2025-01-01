@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { generateTitle } from '@/utils/i18n'
 
 const route = useRoute()
 // 生成数组数据
@@ -39,10 +40,10 @@ const linkHoverColor = ref(store.getters.cssVar.menuBg)
         :key="item.path"
       >
         <span v-if="index === breadcrumData.length - 1" class="no-redirect">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</span>
         <span v-else class="redirect" @click.prevent="onLinkClick(item)">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</span>
       </el-breadcrumb-item>
     </transition-group>
