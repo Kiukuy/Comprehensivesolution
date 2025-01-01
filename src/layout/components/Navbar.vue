@@ -2,6 +2,7 @@
 import { Setting } from '@element-plus/icons'
 import Hamburger from '@/components/hamburger'
 import breadcrumb from '@/components/Breadcrumb'
+import LangSelect from '@/components/LangSelect'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import breadcrumb from '@/components/Breadcrumb'
     <hamburger class="hamburger-container"></hamburger>
     <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
+      <LangSelect class="right-menu-item hover-effect"></LangSelect>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar
@@ -49,6 +51,18 @@ import breadcrumb from '@/components/Breadcrumb'
     align-items: center;
     float: right;
     padding-right: 16px;
+
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
 
     ::v-deep .avatar-container {
       cursor: pointer;
