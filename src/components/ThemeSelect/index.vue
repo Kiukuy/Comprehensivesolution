@@ -1,5 +1,10 @@
 <script setup>
-const handleSetTheme = (command) => {}
+import { ref } from 'vue'
+import SelectColor from './components/SelectColor.vue'
+const selectColorVisible = ref(false)
+const handleSetTheme = (command) => {
+  selectColorVisible.value = true
+}
 </script>
 
 <template>
@@ -23,7 +28,9 @@ const handleSetTheme = (command) => {}
     </template>
   </el-dropdown>
   <!-- 弹出层 -->
-  <div></div>
+  <div>
+    <select-color v-model="selectColorVisible"></select-color>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

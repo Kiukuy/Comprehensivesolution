@@ -45,6 +45,7 @@ export default {
     themeChange: 'Theme Change'
   },
   universal: {
+    tips: 'tips',
     confirm: 'confirm',
     cancel: 'cancel'
   },
