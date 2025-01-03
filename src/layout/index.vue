@@ -2,7 +2,6 @@
 import Navbar from './components/Navbar.vue'
 import AppMain from './components/AppMain.vue'
 import Sidebar from './components/Sidebar'
-import variables from '@/styles/variables.module.scss'
 </script>
 
 <template>
@@ -14,7 +13,7 @@ import variables from '@/styles/variables.module.scss'
     <Sidebar
       id="guide-sidebar"
       class="sidebar-container"
-      :style="{ backgroundColor: variables.menuBg }"
+      :style="{ backgroundColor: $store.getters.cssVar.menuBg }"
     ></Sidebar>
     <div class="main-container">
       <div class="fixed-header">
