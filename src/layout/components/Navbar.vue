@@ -5,6 +5,7 @@ import breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
+import HeaderSearch from '@/components/HeaderSearch'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Screenfull from '@/components/Screenfull'
     <hamburger class="hamburger-container"></hamburger>
     <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
+      <HeaderSearch class="right-menu-item hover-effect"></HeaderSearch>
       <Screenfull class="right-menu-item hover-effect" />
       <ThemePicker class="right-menu-item hover-effect"></ThemePicker>
       <LangSelect class="right-menu-item hover-effect"></LangSelect>
