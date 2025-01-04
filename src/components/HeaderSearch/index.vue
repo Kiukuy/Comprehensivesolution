@@ -1,31 +1,39 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { filterRoutes } from '@/utils/route'
 import { generateRoutes } from './FuseData'
 import Fuse from 'fuse.js'
+import { watchSwitchLang } from '@/utils/i18n'
 
 // 检索数据源
 const router = useRouter()
-const searchPool = computed(() => {
+let searchPool = computed(() => {
   const filRoutes = filterRoutes(router.getRoutes())
   return generateRoutes(filRoutes)
 })
 
-const fuse = new Fuse(searchPool.value, {
-  shouldSort: true,
-  minMatchCharLength: 1,
-  keys: [
-    {
-      name: 'title',
-      weight: 0.7
-    },
-    {
-      name: 'path',
-      weight: 0.3
-    }
-  ]
-})
+/**
+ * 搜索库相关
+ */
+let fuse
+const initFuse = (searchPool) => {
+  fuse = new Fuse(searchPool, {
+    shouldSort: true,
+    minMatchCharLength: 1,
+    keys: [
+      {
+        name: 'title',
+        weight: 0.7
+      },
+      {
+        name: 'path',
+        weight: 0.3
+      }
+    ]
+  })
+}
+initFuse(searchPool.value)
 
 const headerSearchSelectRef = ref(null)
 const isShow = ref(false)
@@ -49,6 +57,44 @@ const querySearch = (query) => {
 const onSelectChange = (val) => {
   router.push(val.path)
 }
+/**
+ * 关闭search的处理事件
+ */
+const onClose = (event) => {
+  if (
+    event.target.className ===
+      'el-select__selected-item el-select__placeholder is-transparent' ||
+    event.target.tagName === 'SPAN'
+  ) {
+    return
+  }
+
+  // if (headerSearchSelectRef.value === event.target) {
+  //   return
+  // }
+  // headerSearchSelectRef.value.blur()
+  isShow.value = false
+  searchOptions.value = []
+}
+/**
+ * 监听search打开, 处理close事件
+ */
+watch(isShow, (val) => {
+  if (val) {
+    document.body.addEventListener('click', onClose)
+  } else {
+    document.body.removeEventListener('click', onClose)
+  }
+})
+
+// 处理国际化
+watchSwitchLang(() => {
+  searchPool = computed(() => {
+    const filRoutes = filterRoutes(router.getRoutes())
+    return generateRoutes(filRoutes)
+  })
+  initFuse(searchPool.value)
+})
 </script>
 
 <template>
