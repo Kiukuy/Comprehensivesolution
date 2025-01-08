@@ -1,5 +1,5 @@
 <script setup>
-import { Setting } from '@element-plus/icons'
+import { Setting } from '@element-plus/icons-vue'
 import Hamburger from '@/components/hamburger'
 import breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'

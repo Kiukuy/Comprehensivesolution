@@ -32,7 +32,11 @@ module.exports = defineConfig({
         target: 'https://api.imooc-admin.lgdsunday.club/',
         changeOrigin: true //是否跨域
       }
-    }
+    },
+    // 报错展示在浏览器页面中的问题处理
+    client: {
+      overlay: false,
+    },
   },
   configureWebpack: {
     resolve: {

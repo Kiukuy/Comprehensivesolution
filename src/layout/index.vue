@@ -2,6 +2,7 @@
 import Navbar from './components/Navbar.vue'
 import AppMain from './components/AppMain.vue'
 import Sidebar from './components/Sidebar'
+import TagsView from '@/components/TagsView'
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import Sidebar from './components/Sidebar'
     <div class="main-container">
       <div class="fixed-header">
         <Navbar></Navbar>
+        <TagsView></TagsView>
       </div>
       <app-main></app-main>
     </div>

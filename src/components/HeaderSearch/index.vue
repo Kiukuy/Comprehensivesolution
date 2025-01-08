@@ -52,7 +52,6 @@ const querySearch = (query) => {
   } else {
     searchOptions.value = []
   }
-  console.log(searchOptions.value)
 }
 const onSelectChange = (val) => {
   router.push(val.path)
