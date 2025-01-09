@@ -19,7 +19,7 @@ import TagsView from '@/components/TagsView'
     <div class="main-container">
       <div class="fixed-header">
         <Navbar></Navbar>
-        <TagsView></TagsView>
+        <TagsView id="guide-tags"></TagsView>
       </div>
       <app-main></app-main>
     </div>

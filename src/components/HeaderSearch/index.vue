@@ -99,6 +99,7 @@ watchSwitchLang(() => {
 <template>
   <div :class="{ show: isShow }" class="header-search">
     <svg-icon
+      id="guide-search"
       class-name="search-icon"
       icon="search"
       @click.stop="onShowClick"
