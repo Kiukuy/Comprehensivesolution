@@ -1,6 +1,9 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { CircleClose } from '@element-plus/icons-vue'
+import { ref, reactive, watch } from 'vue'
+import ContextMenu from './ContextMenu.vue'
+import { useStore } from 'vuex'
 
 const route = useRoute()
 /**
@@ -8,7 +11,42 @@ const route = useRoute()
  */
 const isActive = (tag) => tag.path === route.path
 
-const onCloseClick = () => {}
+const store = useStore()
+const onCloseClick = (index) => {
+  store.commit('app/removeTagsView', {
+    type: 'index',
+    index
+  })
+}
+
+// contextMenu 相关
+const selectIndex = ref(0)
+const visible = ref(false)
+const menuStyle = reactive({
+  left: 0,
+  top: 0
+})
+// 展示menu
+const openMenu = (e, index) => {
+  const { x, y } = e
+  menuStyle.left = x + 'px'
+  menuStyle.top = y + 'px'
+  selectIndex.value = index
+  visible.value = true
+}
+
+// 关闭tag菜单
+const closeMenu = () => {
+  visible.value = false
+}
+// 监听tag菜单
+watch(visible, (val) => {
+  if (val) {
+    document.body.addEventListener('click', closeMenu)
+  } else {
+    document.body.removeEventListener('click', closeMenu)
+  }
+})
 </script>
 
 <template>
@@ -23,6 +61,7 @@ const onCloseClick = () => {}
       v-for="(tag, index) of $store.getters.tagsViewList"
       :key="tag.fullPath"
       :to="{ path: tag.fullPath }"
+      @contextmenu.prevent="openMenu($event, index)"
     >
       {{ tag.title }}
       <CircleClose
@@ -31,6 +70,11 @@ const onCloseClick = () => {}
         @click.stop.prevent="onCloseClick(index)"
       />
     </router-link>
+    <ContextMenu
+      :style="menuStyle"
+      :index="selectIndex"
+      v-show="visible"
+    ></ContextMenu>
   </div>
 </template>
 
