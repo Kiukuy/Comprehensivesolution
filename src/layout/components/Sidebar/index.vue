@@ -11,9 +11,7 @@ const logoHeight = 44
         shape="square"
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
       ></el-avatar>
-      <h1 class="logo-title" v-if="$store.getters.sidebarOpened">
-        imooc-admin
-      </h1>
+      <h1 class="logo-title" v-if="$store.getters.sidebarOpened">My-admin</h1>
     </div>
     <SidebarMenu></SidebarMenu>
   </div>
