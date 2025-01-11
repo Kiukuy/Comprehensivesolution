@@ -11,19 +11,19 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   config => {
+    // 添加icode
+    config.headers.icode = 'helloqianduanxunlianying'
     // 添加header
     if (store.getters.token) {
       if (isCheckTimeout()) {
         store.dispatch('user/logout')
         return Promise.reject(new Error('Token 失效'))
       }
-      // 添加icode
-      config.headers.icode = 'helloqianduanxunlianying'
       // 添加token
       config.headers.Authorization = `Bearer ${store.getters.token}`
-      // 配置接口国际化
-      config.headers['Accept-Language'] = store.getters.language
     }
+    // 配置接口国际化
+    config.headers['Accept-Language'] = store.getters.language
     return config // 必须返回配置
   },
   error => {
