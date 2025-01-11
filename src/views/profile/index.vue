@@ -30,6 +30,7 @@ import chapter from './components/chapter.vue'
 import author from './components/author.vue'
 import { ref } from 'vue'
 import { features } from '@/api/user'
+import { watchSwitchLang } from '@/utils/i18n'
 
 const activeName = ref('feature')
 
@@ -38,6 +39,13 @@ const getFeatureData = async () => {
   featureData.value = await features()
 }
 getFeatureData()
+watchSwitchLang(getFeatureData)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.my-container {
+  .user-card {
+    margin-right: 20px;
+  }
+}
+</style>
