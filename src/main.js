@@ -8,8 +8,10 @@ import '@/styles/update-element.scss'
 import installIcons from '@/icons'
 import '@/permission'
 import i18n from '@/i18n'
+import installFilter from '@/filters'
 
 const app = createApp(App)
 installElementPlus(app)
 installIcons(app)
+installFilter(app)
 app.use(store).use(router).use(i18n).mount('#app')

@@ -38,10 +38,11 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column
-          prop="openTime"
-          :label="$t('msg.excel.openTime')"
-        ></el-table-column>
+        <el-table-column :label="$t('msg.excel.openTime')">
+          <template #default="{ row }">{{
+            $filters.dateFilter(row.openTime)
+          }}</template>
+        </el-table-column>
         <el-table-column
           :label="$t('msg.excel.action')"
           fixed="right"
@@ -119,6 +120,13 @@ watch([page, size], () => {
   .pagination {
     justify-content: center;
     margin-top: 20px;
+    ::v-deep .el-input__wrapper {
+      box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color))
+        inset !important;
+      &.is-focus {
+        box-shadow: 0 0 0 1px var(--el-input-focus-border-color) inset !important;
+      }
+    }
   }
 }
 </style>
