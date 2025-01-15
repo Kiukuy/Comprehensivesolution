@@ -40,6 +40,7 @@ const privateRoutes = [
       },
       {
         path: '/user/info/:id',
+        props: true,
         component: () => import('@/views/user-info/index.vue'),
         meta: {
           title: 'userInfo'
