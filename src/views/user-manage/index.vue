@@ -26,7 +26,8 @@
             <el-image
               class="avatar"
               :src="row.avatar"
-              :previe-src-list="[row.avatar]"
+              :preview-src-list="[row.avatar]"
+              preview-teleported
             ></el-image>
           </template>
         </el-table-column>
