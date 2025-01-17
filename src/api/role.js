@@ -1,0 +1,19 @@
+import request from '@/utils/request'
+
+/**
+ * 获取所有角色
+ */
+export const roleList = () => {
+  return request({
+    url: '/role/list'
+  })
+}
+
+/**
+ * 获取所有权限
+ */
+export const pemissionList = () => {
+  return request({
+    url: '/permission/list'
+  })
+}
