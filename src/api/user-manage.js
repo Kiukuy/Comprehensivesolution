@@ -47,3 +47,16 @@ export const deleteUser = id => {
     url: `/user-manage/detele/${id}`
   })
 }
+
+/**
+ * 用户分配角色
+ */
+export const updateRole = (id, roles) => {
+  return request({
+    url: `/user-manage/update-role/${id}`,
+    method: 'POST',
+    data: {
+      roles
+    }
+  })
+}
