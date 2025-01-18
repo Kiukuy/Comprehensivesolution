@@ -16,21 +16,30 @@
           prop="describe"
         ></el-table-column>
         <el-table-column :label="$t('msg.role.action')">
-          <template #default>
-            <el-button type="primary" size="mini">
+          <template #default="{ row }">
+            <el-button
+              type="primary"
+              size="mini"
+              @click="onDistributePermissionClick(row)"
+            >
               {{ $t('msg.role.assignPermissions') }}
             </el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
+    <DistributePermission
+      v-model="distributePermissionVisible"
+      :roleId="selectRoleId"
+    ></DistributePermission>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { roleList } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'
+import DistributePermission from './components/DistributePermission.vue'
 
 const allRoles = ref([])
 const getRoleList = async () => {
@@ -38,6 +47,19 @@ const getRoleList = async () => {
 }
 getRoleList()
 watchSwitchLang(getRoleList)
+
+/**
+ * 分配权限
+ */
+const distributePermissionVisible = ref(false)
+const selectRoleId = ref('')
+const onDistributePermissionClick = (row) => {
+  selectRoleId.value = row.id
+  distributePermissionVisible.value = true
+}
+watch(distributePermissionVisible, (val) => {
+  if (!val) selectRoleId.value = ''
+})
 </script>
 
 <style lang="scss" scoped></style>
