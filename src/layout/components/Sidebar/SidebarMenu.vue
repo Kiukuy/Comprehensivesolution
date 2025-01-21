@@ -1,13 +1,14 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
-import { filterRoutes, generateMenus } from '@/utils/route'
+import { filterRouters, generateMenus } from '@/utils/route'
 import { computed } from 'vue'
 import SidebarItem from './SidebarItem.vue'
 
 const router = useRouter()
-const routes = computed(() =>
-  generateMenus(filterRoutes(router.getRoutes(router.getRoutes)))
-)
+const routes = computed(() => {
+  console.log(generateMenus(filterRouters(router.getRoutes())))
+  return generateMenus(filterRouters(router.getRoutes()))
+})
 const route = useRoute()
 const activeMenu = computed(() => {
   const { path } = route

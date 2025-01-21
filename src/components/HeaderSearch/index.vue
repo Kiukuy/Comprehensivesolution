@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { filterRoutes } from '@/utils/route'
+import { filterRouters } from '@/utils/route'
 import { generateRoutes } from './FuseData'
 import Fuse from 'fuse.js'
 import { watchSwitchLang } from '@/utils/i18n'
@@ -9,7 +9,7 @@ import { watchSwitchLang } from '@/utils/i18n'
 // 检索数据源
 const router = useRouter()
 let searchPool = computed(() => {
-  const filRoutes = filterRoutes(router.getRoutes())
+  const filRoutes = filterRouters(router.getRoutes())
   return generateRoutes(filRoutes)
 })
 
@@ -89,7 +89,7 @@ watch(isShow, (val) => {
 // 处理国际化
 watchSwitchLang(() => {
   searchPool = computed(() => {
-    const filRoutes = filterRoutes(router.getRoutes())
+    const filRoutes = filterRouters(router.getRoutes())
     return generateRoutes(filRoutes)
   })
   initFuse(searchPool.value)

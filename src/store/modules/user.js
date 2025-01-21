@@ -2,7 +2,7 @@ import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 import { setTimeStamp } from '@/utils/auth'
 
 export default {
@@ -27,21 +27,26 @@ export default {
         login({
           username,
           password: md5(password)
-        }).then(data => {
-          context.commit('setToken', data.token)
-          router.push('/')
-          // 保存登录时间
-          setTimeStamp()
-          resolve()
-        }).catch(err => {
-          reject(err)
         })
+          .then((data) => {
+            context.commit('setToken', data.token)
+            router.push('/')
+            // 保存登录时间
+            setTimeStamp()
+            resolve()
+          })
+          .catch((err) => {
+            reject(err)
+          })
       })
     },
     async getUserInfo(context) {
-      context.commit('setUserInfo', await getUserInfo())
+      const res = await getUserInfo()
+      context.commit('setUserInfo', res)
+      return res
     },
     logout(context) {
+      resetRouter()
       context.commit('setToken', '')
       context.commit('setUserInfo', {})
       removeAllItem()

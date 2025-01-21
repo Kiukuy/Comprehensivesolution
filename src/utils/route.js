@@ -5,7 +5,7 @@ import path from 'path'
 
 const getChildrenRoute = (routes) => {
   const result = []
-  routes.forEach(route => {
+  routes.forEach((route) => {
     if (route.children && route.children.length > 0) {
       result.push(...route.children)
     }
@@ -16,9 +16,12 @@ const getChildrenRoute = (routes) => {
 /**
  * 处理脱离层级的路由
  */
-export const filterRoutes = routes => {
+export const filterRouters = (routes) => {
   const childernRoutes = getChildrenRoute(routes)
-  return routes.filter(route => !childernRoutes.find(childernRoute => childernRoute.path === route.path))
+  return routes.filter(
+    (route) =>
+      !childernRoutes.find((childernRoute) => childernRoute.path === route.path)
+  )
 }
 
 /**
@@ -36,24 +39,25 @@ const isNull = (data) => {
  */
 export function generateMenus(routes, basePath = '') {
   const result = []
-  routes.forEach(item => {
+  routes.forEach((item) => {
     if (isNull(item.meta) && isNull(item.children)) return
     if (isNull(item.meta) && !isNull(item.children)) {
       result.push(...generateMenus(item.children, item.path))
       return
     }
     const routePath = path.resolve(basePath, item.path)
-    let route = result.find(item => item.path === routePath)
+    let route = result.find((item) => item.path === routePath)
     if (!route) {
       route = {
         ...item,
         path: routePath,
         children: []
       }
-    }
 
-    if (route.meta.icon && route.meta.title) {
-      result.push(route)
+      // 要放到 if 里面
+      if (route.meta.icon && route.meta.title) {
+        result.push(route)
+      }
     }
 
     if (item.children) {
