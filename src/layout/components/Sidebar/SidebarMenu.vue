@@ -6,7 +6,6 @@ import SidebarItem from './SidebarItem.vue'
 
 const router = useRouter()
 const routes = computed(() => {
-  console.log(generateMenus(filterRouters(router.getRoutes())))
   return generateMenus(filterRouters(router.getRoutes()))
 })
 const route = useRoute()

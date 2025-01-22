@@ -20,12 +20,10 @@ router.beforeEach(async (to, from, next) => {
           'permission/filterRouters',
           permission.menus
         )
-        console.log(filterRouters)
         // 利用addRoute循环添加
         filterRouters.forEach((item) => {
           router.addRoute(item)
         })
-        console.log(router.getRoutes())
         // 添加完动态路由后，需要进行一次主动跳转
         return next(to.path)
       }
