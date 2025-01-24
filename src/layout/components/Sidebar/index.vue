@@ -1,16 +1,13 @@
 <script setup>
 import SidebarMenu from './SidebarMenu.vue'
+import InTp from '@/icons/images/InTp.jpg'
 const logoHeight = 44
 </script>
 
 <template>
   <div>
     <div class="logo-container">
-      <el-avatar
-        :size="logoHeight"
-        shape="square"
-        src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
-      ></el-avatar>
+      <el-avatar :size="logoHeight" shape="square" :src="InTp"></el-avatar>
       <h1 class="logo-title" v-if="$store.getters.sidebarOpened">My-admin</h1>
     </div>
     <SidebarMenu></SidebarMenu>

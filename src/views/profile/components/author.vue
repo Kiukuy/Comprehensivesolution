@@ -1,25 +1,25 @@
 <script setup>
 import PanThumb from '@/components/PanThumb'
+import InTp from '@/icons/images/InTp.jpg'
 </script>
 
 <template>
   <div class="author-container">
     <div class="header">
-      <PanThumb
-        image="https://res.lgdsunday.club/my-avatar.jpg"
-        height="60px"
-        width="60px"
-        :hoverable="false"
-      >
-        {{ $t('msg.profile.name') }}
+      <PanThumb :image="InTp" height="60px" width="60px" :hoverable="false">
+        <!-- {{ $t('msg.profile.name') }} -->
+        <div>Kuy</div>
       </PanThumb>
       <div class="header-desc">
-        <h3>{{ $t('msg.profile.name') }}</h3>
-        <span>{{ $t('msg.profile.job') }}</span>
+        <h3>KiuKuy</h3>
+        <!-- <h3>{{ $t('msg.profile.name') }}</h3> -->
+        <!-- <span>{{ $t('msg.profile.job') }}</span> -->
+        <span>Nothing</span>
       </div>
     </div>
     <div class="info">
-      {{ $t('msg.profile.Introduction') }}
+      <!-- {{ $t('msg.profile.Introduction') }} -->
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     </div>
   </div>
 </template>
